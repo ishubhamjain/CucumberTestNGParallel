@@ -54,7 +54,11 @@ public class GoibiboPostiveScenario {
 			
 			AutomationLog.info("PageTitle is as expected");
 			
-			String PageHeader = gohomepage.text_HomePageHeader().getText();
+		//	String PageHeader = gohomepage.text_HomePageHeader().getText();
+			
+			String PageHeader = gohomepage.text_HomePageHeader.getText();
+			
+			System.out.println("PageHeader is"+PageHeader);
 
 			Assert.assertEquals(PageHeader, xls.getXLcellValue("Assertion", 2, 1),"PageHeader is not as expected");  // reading assert data from excel file
 

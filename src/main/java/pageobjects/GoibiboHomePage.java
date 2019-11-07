@@ -4,6 +4,9 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
 import automationframework.AutomationLog;
 
 public class GoibiboHomePage {
@@ -14,9 +17,10 @@ public class GoibiboHomePage {
 
 	public GoibiboHomePage(WebDriver driver) {
 		this.driver = driver;
+		PageFactory.initElements(driver, this);
 	}
 
-	public WebElement text_HomePageHeader() throws Exception {
+	/*public WebElement text_HomePageHeader() throws Exception {
 		try {
 		//	element = driver.findElement(By.xpath("//h1[@class='txtCenter white ico30']"));
 			element = driver.findElement(By.xpath("//h1[@class='txtCenter white ico30 txtCap']"));
@@ -26,7 +30,10 @@ public class GoibiboHomePage {
 			throw (e);
 		}
 		return element;
-	}
+	}*/
+	
+    @FindBy(xpath="//h1[@class='txtCenter white ico30 txtCap']")
+    public WebElement text_HomePageHeader;
 	
 	public WebElement textFiled_From() throws Exception {
 		try {
