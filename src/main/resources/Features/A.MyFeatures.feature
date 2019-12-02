@@ -37,4 +37,26 @@ Feature: Automation
   When search for one-way flights between "Bengaluru" and "Mumbai" on old date
   Then Old date must not be selected
   
+  #Scenario Template: Create ABC
+#
+  #Given I open the application
+#
+  #When I enter username as <username>
+#
+  #And I enter password as <password>
+#
+  #Then I enter title as <title>
+#
+  #And press submit
+#
+#
+#Examples:
+#
+#| username | password | title |
+#
+#| Rob      | xyz1      | title1 |
+#
+#| Bob      | xyz1      | title2 |
+  
+  
  

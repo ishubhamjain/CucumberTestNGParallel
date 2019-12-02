@@ -1,4 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>CucumberTestNGParallel</groupId>
 	<artifactId>CucumberTestNGParallel</artifactId>
@@ -7,7 +9,7 @@
 	<properties>
 		<forkCount>1</forkCount>
 		<maven.cucumber.reporting.version>3.20.0</maven.cucumber.reporting.version>
-				<maven.build.timestamp.format>yyyy-MM-dd_HH-mm-ss</maven.build.timestamp.format>
+		<maven.build.timestamp.format>yyyy-MM-dd_HH-mm-ss</maven.build.timestamp.format>
 		<cucumberReporting.outputDirectory>reports/${maven.build.timestamp}</cucumberReporting.outputDirectory>
 		<java.version>1.8</java.version>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
@@ -16,6 +18,8 @@
 		<generateReportRunPhase>install</generateReportRunPhase>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
 	<dependencies>
 		<!-- These 2 are for log4j2 yaml support -->
@@ -73,38 +77,14 @@
 			<artifactId>maven-surefire-plugin</artifactId>
 			<version>3.0.0-M3</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-jvm -->
-		<dependency>
-			<groupId>io.cucumber</groupId>
-			<artifactId>cucumber-jvm</artifactId>
-			<version>4.0.0</version>
-			<type>pom</type>
-		</dependency>
-
-		<dependency>
-			<groupId>info.cukes</groupId>
-			<artifactId>gherkin</artifactId>
-			<version>2.12.2</version>
-			<scope>provided</scope>
-		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.11</version>
 		</dependency>
-		<dependency>
-			<groupId>info.cukes</groupId>
-			<artifactId>cucumber-java</artifactId>
-			<version>1.2.5</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/info.cukes/cucumber-picocontainer -->
-		<dependency>
-			<groupId>info.cukes</groupId>
-			<artifactId>cucumber-picocontainer</artifactId>
-			<version>1.2.5</version>
-			<scope>test</scope>
-		</dependency>
-
+		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-jvm -->
+		<!-- <dependency> <groupId>io.cucumber</groupId> <artifactId>cucumber-jvm</artifactId> 
+			<version>4.0.0</version> <type>pom</type> </dependency> -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -112,26 +92,10 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>info.cukes</groupId>
-			<artifactId>cucumber-junit</artifactId>
-			<version>1.2.5</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>info.cukes</groupId>
-			<artifactId>cucumber-core</artifactId>
-			<version>1.2.5</version>
-		</dependency>
-		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
-			<version>6.14.3</version>
-			<!-- <scope>test</scope> -->
-		</dependency>
-		<dependency>
-			<groupId>info.cukes</groupId>
-			<artifactId>cucumber-testng</artifactId>
-			<version>1.2.5</version>
+			<version>7.0.0</version>
+			<scope>test</scope>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.github.mkolisnyk/cucumber-runner -->
 		<dependency>
@@ -175,6 +139,43 @@
 			<artifactId>poi-ooxml</artifactId>
 			<version>4.1.0</version>
 		</dependency>
+
+
+
+
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-testng</artifactId>
+			<version>4.8.0</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-core -->
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-core</artifactId>
+			<version>4.8.0</version>
+		</dependency>
+		<!-- <dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>4.8.0</version>
+		</dependency> -->
+		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java8 -->
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java8</artifactId>
+			<version>4.8.0</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-picocontainer -->
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-picocontainer</artifactId>
+			<version>4.8.0</version>
+		</dependency>
+
+
+
 	</dependencies>
 	<build>
 		<plugins>
@@ -187,8 +188,8 @@
 						</systemPropertyVariables> -->
 					<forkCount>${forkCount}</forkCount>
 					<reuseForks>true</reuseForks>
-		            <parallel>both</parallel>
-                    <threadCount>4</threadCount>
+					<parallel>methods</parallel>
+					<threadCount>4</threadCount>
 					<includes>
 						<include>**/Parallel*IT.class</include>
 						<!-- <include>RunCukeTest.java</include> -->
@@ -256,6 +257,19 @@
 							<parallelTesting>true</parallelTesting>
 							<checkBuildResult>true</checkBuildResult>
 						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>3.0.0-M3</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
 					</execution>
 				</executions>
 			</plugin>

@@ -3,12 +3,11 @@ package Runner;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import com.github.mkolisnyk.cucumber.runner.ExtendedCucumberOptions;
-
 import automationframework.AppDriver;
 import automationframework.AutomationLog;
 import automationframework.Page;
-import cucumber.api.CucumberOptions;
-import cucumber.api.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.CucumberOptions;
 
 
 @ExtendedCucumberOptions(jsonReport = "target/cucumber.json"
