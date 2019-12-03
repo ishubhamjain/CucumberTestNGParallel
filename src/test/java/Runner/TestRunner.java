@@ -28,7 +28,7 @@ import io.cucumber.testng.CucumberOptions;
 			, glue="stepDefinition"
 			,plugin = { "pretty", "html:target/cucumber-default-report",
 					"json:target/cucumber.json"
-					,"junit:target/cucumber-results.xml"
+					//,"junit:target/cucumber-results.xml"
 					,"usage:target/cucumber-usage.json"
 					,"rerun:reports/rerun.txt"}
 //			,tags= {"@smoke"}  // Run tests in groups
