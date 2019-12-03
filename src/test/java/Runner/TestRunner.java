@@ -2,6 +2,8 @@ package Runner;
 
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.DataProvider;
+
 import com.github.mkolisnyk.cucumber.runner.ExtendedCucumberOptions;
 import automationframework.AppDriver;
 import automationframework.AutomationLog;
@@ -39,6 +41,11 @@ import io.cucumber.testng.CucumberOptions;
 			)
 
 public class TestRunner extends AbstractTestNGCucumberTests {
+	
+	@DataProvider(parallel = true)
+    public Object[][] scenarios() {
+		return super.scenarios();
+	}
 	
     @BeforeSuite
     public static void setUp()  {
