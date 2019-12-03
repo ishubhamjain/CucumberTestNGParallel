@@ -26,13 +26,15 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(
 			features = {"classpath:Features"} 
 			, glue="stepDefinition"
-			,plugin = { "pretty", "html:target/cucumber-default-report",
+			,plugin = { "progress:reports/progress/progress.txt"
+					,"timeline:reports/timeline" 
+					,"pretty", "html:target/cucumber-default-report",
 					"json:target/cucumber.json"
 					//,"junit:target/cucumber-results.xml"
 					,"usage:target/cucumber-usage.json"
 					,"rerun:reports/rerun.txt"}
 //			,tags= {"@smoke"}  // Run tests in groups
-			,monochrome = false
+			,monochrome = true
 //			,dryRun = true
 			)
 

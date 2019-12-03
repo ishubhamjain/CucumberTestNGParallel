@@ -23,6 +23,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pageobjects.FlightDetailsPage;
 import pageobjects.GoibiboHomePage;
+import pico.FullName;
 
 public class GoibiboPostiveScenario {
 	
@@ -30,11 +31,19 @@ public class GoibiboPostiveScenario {
 	GoibiboHomePage gohomepage= null;
 	FlightDetailsPage flightPage=null;
 	ExcelLib xls= new ExcelLib();
+	private FullName name;
 
-	public GoibiboPostiveScenario() {
+	/*public GoibiboPostiveScenario() {
 		this.driver= Page.getDriver();
 		gohomepage = new GoibiboHomePage(this.driver);
 		flightPage= new FlightDetailsPage(this.driver);
+	}*/
+	
+	public GoibiboPostiveScenario(FullName name) {
+		this.driver= Page.getDriver();
+		gohomepage = new GoibiboHomePage(this.driver);
+		flightPage= new FlightDetailsPage(this.driver);
+		this.name = name;
 	}
 			
 	@Given("^User logs into the application and on the home page$")
@@ -49,6 +58,10 @@ public class GoibiboPostiveScenario {
 			WaitFor.isloadComplete(driver);
 			
 			String PageTitle = driver.getTitle();
+			
+			name.setFirstName(PageTitle);
+			
+			name.setLastName("last name ="+PageTitle);
 			
 		//	Assert.assertEquals(PageTitle, xls.getXLcellValue("Assertion", 1, 1),"PageTitle is not as expected"); // reading assert data from excel file
 			

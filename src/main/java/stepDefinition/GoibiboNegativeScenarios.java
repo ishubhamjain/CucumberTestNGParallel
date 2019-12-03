@@ -15,21 +15,38 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pageobjects.FlightDetailsPage;
 import pageobjects.GoibiboHomePage;
+import pico.FullName;
 
 public class GoibiboNegativeScenarios {
 	WebDriver driver = null;
 	GoibiboHomePage gohomepage= null;
 	FlightDetailsPage flightPage=null;
+	private FullName name;
 
-	public GoibiboNegativeScenarios() {
+/*	public GoibiboNegativeScenarios() {
 		this.driver= Page.getDriver();
 		gohomepage = new GoibiboHomePage(this.driver);
 		flightPage= new FlightDetailsPage(this.driver);
-	}
+	}*/
 
+	public GoibiboNegativeScenarios(FullName name) {
+		this.driver= Page.getDriver();
+		gohomepage = new GoibiboHomePage(this.driver);
+		flightPage= new FlightDetailsPage(this.driver);
+		this.name = name;
+	}
 
 	@Then("^An error message should appears and no search process should initiate$")
 	public void an_error_message_should_appears_and_no_search_process_should_initiate() throws Throwable {
+		
+		AutomationLog.info("Test pico containers ***************************");
+		
+		AutomationLog.info(name.getFirstName());
+		AutomationLog.info(name.getLastName());
+		
+		AutomationLog.info("Test pico containers ***************************");
+		
+		
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(gohomepage.By_textErrorMessage_SrcDes()));
 		
@@ -54,7 +71,7 @@ public class GoibiboNegativeScenarios {
 	
 	@When("^search for one-way flights between \"([^\"]*)\" and \"([^\"]*)\" on old date$")
 	public void search_for_one_way_flights_between_and_on_old_date(String source, String destination) throws Throwable {
-		GoibiboPostiveScenario scenario = new GoibiboPostiveScenario();
+		GoibiboPostiveScenario scenario = new GoibiboPostiveScenario(name);
 		scenario.search_for_one_way_flights(source, destination);
 		
 		List<WebElement> oldDates = gohomepage.dropdown_disableOldDates();
@@ -64,6 +81,7 @@ public class GoibiboNegativeScenarios {
 
 	@Then("^Old date must not be selected$")
 	public void old_date_must_not_be_selected() throws Throwable {
+				
 		String departureDate = gohomepage.dropdown_DepartureSelection().getAttribute("value");
 		
 		AutomationLog.info("departureDate  =="+departureDate);

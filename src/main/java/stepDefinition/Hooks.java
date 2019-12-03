@@ -13,7 +13,9 @@ import automationframework.Page;
 import automationframework.WaitFor;
 import io.cucumber.core.api.Scenario;
 import io.cucumber.java.After;
+import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
+import io.cucumber.java.BeforeStep;
 
 
 public class Hooks {
@@ -40,11 +42,22 @@ public class Hooks {
 			try {
 				AppDriver.browserStatus=false;
 				byte[] screenshot = ((TakesScreenshot) Page.getDriver()).getScreenshotAs(OutputType.BYTES);
-				scenario.embed(screenshot, "image/png");
+				scenario.embed(screenshot, "image/png"); // this embed the image in report
 				//scenario.write("ase hota hai fail");
+				scenario.write(scenario.getName()+" = failed"); // this write text in report
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 	}
+	
+/*	@BeforeStep
+	public void beforehook() {
+		System.out.println("Before Hook");
+	}
+	
+	@AfterStep
+	public void Afterhook() {
+		System.out.println("After Hook");
+	}*/
 }
